@@ -1,9 +1,9 @@
 import { Button, Flex, FormControl, FormErrorMessage, Input } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { ZOD_GROUP_SCHEMA } from 'src/features/group/constants'
 import useAddGroup from 'src/hooks/useAddGroup'
 import { z } from 'zod'
+import { ZOD_GROUP_SCHEMA } from './constants'
 
 const schema = z.object(ZOD_GROUP_SCHEMA)
 type FormData = z.infer<typeof schema>

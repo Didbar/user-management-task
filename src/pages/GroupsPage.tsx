@@ -1,7 +1,6 @@
 import { Grid, VStack } from '@chakra-ui/react'
 import { Outlet, useParams } from 'react-router-dom'
-import GroupForm from 'src/features/group/GroupForm'
-import GroupsTable from 'src/features/group/GroupsTable'
+import { GroupForm, GroupsTable } from 'src/features/group'
 
 const GroupsPage = () => {
   const params = useParams()

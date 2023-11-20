@@ -8,10 +8,10 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Select } from 'chakra-react-select'
 import { Controller, useForm } from 'react-hook-form'
-import { USER_DEFAULT_VALUES, ZOD_USER_SCHEMA } from 'src/features/user/constants'
 import useAddUser from 'src/hooks/useAddUser'
 import useGroups from 'src/hooks/useGroups'
 import { z } from 'zod'
+import { USER_DEFAULT_VALUES, ZOD_USER_SCHEMA } from './constants'
 
 const schema = z.object(ZOD_USER_SCHEMA)
 type FormData = z.infer<typeof schema>

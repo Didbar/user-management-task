@@ -1,7 +1,6 @@
 import { Grid, VStack } from '@chakra-ui/react'
 import { Outlet, useParams } from 'react-router-dom'
-import UserForm from 'src/features/user/UserForm'
-import UsersTable from 'src/features/user/UsersTable'
+import { UserForm, UsersTable } from 'src/features/user'
 
 const UsersPage = () => {
   const params = useParams()

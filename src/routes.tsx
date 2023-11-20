@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import GroupDetails from 'src/features/group/GroupDetails'
-import UserDetails from 'src/features/user/UserDetails'
 import ErrorPage from 'src/pages/ErrorPage'
 import GroupsPage from 'src/pages/GroupsPage'
 import HomePage from 'src/pages/HomePage'
 import Layout from 'src/pages/Layout'
 import UsersPage from 'src/pages/UsersPage'
+import { GroupDetails } from './features/group'
+import { UserDetails } from './features/user'
 
 const router = createBrowserRouter([
   {
