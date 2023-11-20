@@ -7,9 +7,8 @@ import { DataTable } from 'src/components/DataTable'
 import User from 'src/entities/User'
 
 const UsersTable = () => {
-  const USER_COLUMNS = getUserColumns()
-  const columns = useMemo(() => USER_COLUMNS, [])
-  //TODO: Create useUSersHook
+  const columns = useMemo(() => getUserColumns(), [])
+  //TODO: Create useUsersHook
 
   return (
     <Box overflowY="auto" boxShadow="lg" borderRadius="4px" p="10px">
@@ -22,7 +21,7 @@ export default UsersTable
 
 const getUserColumns = () => {
   const columnHelper = createColumnHelper<User>()
-  const USER_COLUMNS = [
+  const columns = [
     columnHelper.accessor('name', {
       cell: info => (
         <ChakraLink as={Link} to={`/users/${info.row.original.id}`}>
@@ -36,5 +35,5 @@ const getUserColumns = () => {
       header: 'Email',
     }),
   ]
-  return USER_COLUMNS
+  return columns
 }
