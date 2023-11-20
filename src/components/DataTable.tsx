@@ -89,9 +89,11 @@ export function DataTable<Data extends object>({ data, columns }: DataTableProps
         </Thead>
         <Tbody>
           {table.getRowModel().rows.length === 0 && (
+            <Tr>
             <Td colSpan={table.getAllColumns().length} textAlign="center" p="1rem">
               <Text as="b">No data found.</Text>
             </Td>
+            </Tr>
           )}
           {table.getRowModel().rows.map(row => (
             <Tr key={row.id}>

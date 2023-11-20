@@ -6,8 +6,12 @@ import {
   StatLabel,
   StatNumber,
 } from '@chakra-ui/react'
+import useGroups from 'src/hooks/useGroups'
+import useUsers from 'src/hooks/useUsers'
 
 const HomePage = () => {
+  const { data: users } = useUsers()
+  const { data: groups } = useGroups()
   return (
     <SimpleGrid
       columns={{ base: 1, md: 2 }}
@@ -18,11 +22,11 @@ const HomePage = () => {
       <StatGroup>
         <Stat>
           <StatLabel>Users</StatLabel>
-          <StatNumber>23</StatNumber>
+          <StatNumber>{users.length}</StatNumber>
         </Stat>
         <Stat>
           <StatLabel>Groups</StatLabel>
-          <StatNumber>25</StatNumber>
+          <StatNumber>{groups.length}</StatNumber>
         </Stat>
       </StatGroup>
     </SimpleGrid>
