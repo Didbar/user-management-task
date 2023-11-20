@@ -1,5 +1,5 @@
+import GROUPS, { addUserToGroups } from 'src/api/groups'
 import User from 'src/entities/User'
-import GROUPS, { addUserToGroups } from './groups'
 
 const USERS: User[] = [
   {
