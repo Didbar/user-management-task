@@ -1,28 +1,51 @@
+/* eslint-disable react-refresh/only-export-components */
+import { Spinner } from '@chakra-ui/react'
+import { Suspense, lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import ErrorPage from 'src/pages/ErrorPage'
-import GroupsPage from 'src/pages/GroupsPage'
-import HomePage from 'src/pages/HomePage'
 import Layout from 'src/pages/Layout'
-import UsersPage from 'src/pages/UsersPage'
-import { GroupDetails } from './features/group'
-import { UserDetails } from './features/user'
+
+const GroupDetails = lazy(() => import('./features/group/GroupDetails'))
+const UserDetails = lazy(() => import('./features/user/UserDetails'))
+const GroupsPage = lazy(() => import('src/pages/GroupsPage'))
+const UsersPage = lazy(() => import('src/pages/UsersPage'))
+const ErrorPage = lazy(() => import('src/pages/ErrorPage'))
+const HomePage = lazy(() => import('src/pages/HomePage'))
+
+const withSuspense = (Component: React.ComponentType) => (
+  <Suspense fallback={<Spinner />}>
+    <Component />
+  </Suspense>
+)
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
-    errorElement: <ErrorPage />,
+    errorElement: withSuspense(ErrorPage),
     children: [
-      { index: true, element: <HomePage /> },
+      {
+        index: true,
+        element: withSuspense(HomePage),
+      },
       {
         path: 'users',
-        element: <UsersPage />,
-        children: [{ path: ':id', element: <UserDetails /> }],
+        element: withSuspense(UsersPage),
+        children: [
+          {
+            path: ':id',
+            element: withSuspense(UserDetails),
+          },
+        ],
       },
       {
         path: 'groups',
-        element: <GroupsPage />,
-        children: [{ path: ':id', element: <GroupDetails /> }],
+        element: withSuspense(GroupsPage),
+        children: [
+          {
+            path: ':id',
+            element: withSuspense(GroupDetails),
+          },
+        ],
       },
     ],
   },
