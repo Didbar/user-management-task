@@ -25,4 +25,10 @@ export const getUsers = async () => {
   return new Promise<User[]>(resolve => resolve(USERS))
 }
 
+export const getUser = (userId: number) => {
+  return new Promise<User | undefined>(resolve =>
+    resolve(USERS.find(user => user.id === userId))
+  )
+}
+
 export default USERS
