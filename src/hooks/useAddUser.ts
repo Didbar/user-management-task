@@ -7,7 +7,7 @@ const useAddUser = () => {
   return useMutation({
     mutationFn: addUser,
     onSuccess: (_data, variables) => {
-      queryClient.invalidateQueries()
+      queryClient.invalidateQueries({ queryKey: ['users'] })
       queryClient.setQueriesData<User[]>({ queryKey: ['users'] }, (users = []) => [
         variables,
         ...users,

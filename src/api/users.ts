@@ -71,4 +71,16 @@ export const deleteUser = (userId: number) => {
   return new Promise(resolve => resolve(userId))
 }
 
+export const assignUserToGroup = (userId: number, groupId: number) => {
+  const userIndex = USERS.findIndex(user => user.id === userId)
+
+  if (userIndex !== -1) USERS[userIndex].groups.push(groupId)
+
+  const groupIndex = GROUPS.findIndex(group => group.id === groupId)
+
+  if (groupIndex !== -1) GROUPS[groupIndex].members.push(userId)
+
+  return Promise.resolve()
+}
+
 export default USERS

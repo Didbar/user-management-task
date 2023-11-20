@@ -1,5 +1,6 @@
 import {
   Badge,
+  Button,
   Card,
   CardBody,
   CloseButton,
@@ -13,6 +14,8 @@ import { Link } from 'react-router-dom'
 import User from 'src/entities/User'
 import useRemoveUserGroup from 'src/hooks/useRemoveUserGroup'
 import useUserGroups from 'src/hooks/useUserGroups'
+import useUserManagementStore from 'src/store'
+import UserAssignToGroup from './UserAssignToGroup'
 
 interface Props {
   user: User
@@ -20,6 +23,8 @@ interface Props {
 const UserCard = ({ user }: Props) => {
   const { data: groups } = useUserGroups(user.id)
   const deleteGroup = useRemoveUserGroup()
+  const addingGroup = useUserManagementStore(s => s.addingGroup)
+  const setAddingGroup = useUserManagementStore(s => s.setAddingGroup)
 
   return (
     <Card borderRadius="0.5rem" variant="outline" py={2} w="full">
@@ -58,6 +63,18 @@ const UserCard = ({ user }: Props) => {
                 </HStack>
               </Badge>
             ))}
+            {groups && addingGroup ? (
+              <UserAssignToGroup userId={user.id} />
+            ) : (
+              <Button
+                colorScheme="teal"
+                size="sm"
+                onClick={() => {
+                  setAddingGroup(true)
+                }}>
+                Add Group
+              </Button>
+            )}
           </HStack>
         </VStack>
       </CardBody>
