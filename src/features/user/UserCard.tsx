@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import User from 'src/entities/User'
+import useRemoveUserGroup from 'src/hooks/useRemoveUserGroup'
 import useUserGroups from 'src/hooks/useUserGroups'
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
 }
 const UserCard = ({ user }: Props) => {
   const { data: groups } = useUserGroups(user.id)
+  const deleteGroup = useRemoveUserGroup()
 
   return (
     <Card borderRadius="0.5rem" variant="outline" py={2} w="full">
@@ -47,7 +49,11 @@ const UserCard = ({ user }: Props) => {
                 <HStack>
                   <Link to={`/groups/${g.id}`}>{g.name}</Link>
                   <Tooltip label="Remove Group">
-                    <CloseButton onClick={() => {}} />
+                    <CloseButton
+                      onClick={() =>
+                        deleteGroup.mutate({ userId: user.id, groupId: g.id })
+                      }
+                    />
                   </Tooltip>
                 </HStack>
               </Badge>
