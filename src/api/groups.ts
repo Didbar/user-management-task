@@ -43,4 +43,9 @@ export const addUserToGroups = (userId: number, groupIds: number[]): Promise<Gro
   })
 }
 
+export const addGroup = (group: Group) => {
+  GROUPS.unshift(group)
+  return new Promise<Group>(resolve => resolve(group))
+}
+
 export default GROUPS
