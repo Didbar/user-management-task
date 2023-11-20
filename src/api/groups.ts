@@ -21,7 +21,7 @@ const GROUPS: Group[] = [
   },
 ]
 
-export const getGroups = async () => {
+export const getGroups = () => {
   return new Promise<Group[]>(resolve => resolve(GROUPS))
 }
 

@@ -22,7 +22,7 @@ const USERS: User[] = [
   },
 ]
 
-export const getUsers = async () => {
+export const getUsers = () => {
   return new Promise<User[]>(resolve => resolve(USERS))
 }
 
@@ -54,6 +54,21 @@ export const removeUserGroup = (userId: number, groupId: number) => {
   }
 
   return Promise.resolve()
+}
+
+export const deleteUser = (userId: number) => {
+  const userIndex = USERS.findIndex(user => user.id === userId)
+
+  if (userIndex === -1) {
+    return Promise.reject(new Error(`User with ID ${userId} not found`))
+  }
+
+  USERS.splice(userIndex, 1)
+  GROUPS.forEach(group => {
+    group.members = group.members.filter(memberId => memberId !== userId)
+  })
+
+  return new Promise(resolve => resolve(userId))
 }
 
 export default USERS
