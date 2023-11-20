@@ -1,6 +1,7 @@
 import { Button, HStack, VStack } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom'
 import useUser from 'src/hooks/useUser'
+import UserCard from './UserCard'
 
 const UserDetails = () => {
   const params = useParams()
@@ -15,7 +16,7 @@ const UserDetails = () => {
           Delete User
         </Button>
       </HStack>
-      <>User Card Here For: {user.id}</>
+      <UserCard user={user} />
     </VStack>
   )
 }

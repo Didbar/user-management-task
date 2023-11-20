@@ -25,4 +25,10 @@ export const getGroups = async () => {
   return new Promise<Group[]>(resolve => resolve(GROUPS))
 }
 
+export const findGroupsByUserId = (userId: number) => {
+  return new Promise<Group[]>(resolve =>
+    resolve(GROUPS.filter(group => group.members.includes(userId)))
+  )
+}
+
 export default GROUPS
