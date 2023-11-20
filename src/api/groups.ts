@@ -31,4 +31,16 @@ export const findGroupsByUserId = (userId: number) => {
   )
 }
 
+export const addUserToGroups = (userId: number, groupIds: number[]): Promise<Group[]> => {
+  return new Promise(resolve => {
+    GROUPS.forEach(group => {
+      if (groupIds.includes(group.id) && !group.members.includes(userId))
+        group.members.push(userId)
+
+      return group
+    })
+    resolve(GROUPS)
+  })
+}
+
 export default GROUPS

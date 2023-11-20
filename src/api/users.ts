@@ -1,4 +1,5 @@
 import User from 'src/entities/User'
+import { addUserToGroups } from './groups'
 
 const USERS: User[] = [
   {
@@ -29,6 +30,12 @@ export const getUser = (userId: number) => {
   return new Promise<User | undefined>(resolve =>
     resolve(USERS.find(user => user.id === userId))
   )
+}
+
+export const addUser = (user: User) => {
+  USERS.unshift(user)
+  addUserToGroups(user.id, user.groups)
+  return new Promise<User>(resolve => resolve(user))
 }
 
 export default USERS
