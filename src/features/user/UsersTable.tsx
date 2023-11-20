@@ -2,17 +2,17 @@ import { Box, Link as ChakraLink } from '@chakra-ui/react'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import USERS from 'src/api/users'
 import { DataTable } from 'src/components/DataTable'
 import User from 'src/entities/User'
+import useUsers from 'src/hooks/useUsers'
 
 const UsersTable = () => {
+  const { data: users } = useUsers()
   const columns = useMemo(() => getUserColumns(), [])
-  //TODO: Create useUsersHook
 
   return (
     <Box overflowY="auto" boxShadow="lg" borderRadius="4px" p="10px">
-      <DataTable data={USERS} columns={columns} />
+      <DataTable data={users} columns={columns} />
     </Box>
   )
 }

@@ -21,4 +21,8 @@ const USERS: User[] = [
   },
 ]
 
+export const getUsers = async () => {
+  return new Promise<User[]>(resolve => resolve(USERS))
+}
+
 export default USERS

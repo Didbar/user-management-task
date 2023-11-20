@@ -2,13 +2,13 @@ import { Box, Link as ChakraLink } from '@chakra-ui/react'
 import { createColumnHelper } from '@tanstack/react-table'
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import GROUPS from 'src/api/groups'
 import { DataTable } from 'src/components/DataTable'
 import Group from 'src/entities/Group'
+import useGroups from 'src/hooks/useGroups'
 
 const GroupsTable = () => {
+  const { data: groups } = useGroups()
   const columns = useMemo(() => getUserColumns(), [])
-  //TODO: Create useGroups Hook
 
   return (
     <Box
@@ -16,7 +16,7 @@ const GroupsTable = () => {
       maxHeight={{ base: '40vh', lg: '85vh' }}
       boxShadow="lg"
       borderRadius="4px">
-      <DataTable data={GROUPS} columns={columns} />
+      <DataTable data={groups} columns={columns} />
     </Box>
   )
 }
