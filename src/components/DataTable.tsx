@@ -58,7 +58,7 @@ export function DataTable<Data extends object>({ data, columns }: DataTableProps
         placeholder="Search..."
         onChange={e => setGlobalFilter(e.target.value)}
       />
-      <Table __css={{ tableLayout: 'fixed', width: 'full' }} size="sm">
+      <Table layout="fixed" w="100%" size="sm">
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Tr key={headerGroup.id}>
@@ -101,7 +101,7 @@ export function DataTable<Data extends object>({ data, columns }: DataTableProps
                   <Td
                     key={cell.id}
                     isNumeric={meta?.isNumeric}
-                    whiteSpace="nowrap"
+                    whiteSpace="normal"
                     fontSize={{ base: '0.68rem', md: '0.9rem', lg: '1rem' }}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Td>

@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardBody,
+  Link as ChakraLink,
   CloseButton,
   HStack,
   Heading,
@@ -50,9 +51,16 @@ const UserCard = ({ user }: Props) => {
           <HStack wrap="wrap">
             <Text as="span">Groups:</Text>
             {groups?.map(g => (
-              <Badge key={g.id} p="0.5rem 1rem" colorScheme="blue">
+              <Badge
+                key={g.id}
+                px="0.5rem"
+                fontSize="0.65em"
+                colorScheme="blue"
+                variant="outline">
                 <HStack>
-                  <Link to={`/groups/${g.id}`}>{g.name}</Link>
+                  <ChakraLink as={Link} to={`/groups/${g.id}`}>
+                    {g.name}
+                  </ChakraLink>
                   <Tooltip label="Remove Group">
                     <CloseButton
                       onClick={() =>

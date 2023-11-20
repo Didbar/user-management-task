@@ -1,7 +1,8 @@
-import { Button, CloseButton, HStack, VStack } from '@chakra-ui/react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Button, HStack, VStack } from '@chakra-ui/react'
+import { useNavigate, useParams } from 'react-router-dom'
 import useDeleteGroup from 'src/hooks/useDeleteGroup'
 import useGroup from 'src/hooks/useGroup'
+import GroupCard from './GroupCard'
 
 const GroupDetails = () => {
   const params = useParams()
@@ -24,12 +25,7 @@ const GroupDetails = () => {
           Delete Group
         </Button>
       </HStack>
-      <>
-        <Link to="/groups">
-          <CloseButton />
-        </Link>
-        Group Card goes here {group.id}
-      </>
+      <GroupCard group={group} />
     </VStack>
   )
 }

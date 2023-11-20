@@ -83,4 +83,10 @@ export const assignUserToGroup = (userId: number, groupId: number) => {
   return Promise.resolve()
 }
 
+export const findUsersByGroupId = (groupId: number) => {
+  return new Promise<User[]>(resolve =>
+    resolve(USERS.filter(user => user.groups.includes(groupId)))
+  )
+}
+
 export default USERS
