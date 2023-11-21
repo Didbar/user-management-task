@@ -19,7 +19,6 @@ const GroupForm = () => {
   } = useForm<FormData>({ resolver: zodResolver(schema), mode: 'all' })
 
   const onSubmit = async (data: FormData) => {
-    console.log(data)
     addGroup.mutate({
       id: Number(new Date()),
       members: [],
